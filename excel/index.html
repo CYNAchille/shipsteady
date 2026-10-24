@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel 多表合并清洗</title>
+  <link rel="stylesheet" href="../shared/fonts/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <p class="eyebrow"><span>Excel Merge</span> · 多表合并清洗</p>
+      <h1>几张格式不一的表格，<br>一次合成一张干净的表。</h1>
+      <p class="lede">自动找表头、对齐同义列名、统一日期与金额格式，按关键字段去重，冲突行单独标出交人工判断。文件只在本机浏览器内处理，不上传。</p>
+    </div>
+    <ol class="steps" id="steps">
+      <li data-s="1"><b>01</b><span>选择表格</span></li>
+      <li data-s="2"><b>02</b><span>核对映射</span></li>
+      <li data-s="3"><b>03</b><span>预览导出</span></li>
+    </ol>
+  </div>
+  <span class="badge-synth">演示数据为合成数据</span>
+</header>
+
+<main class="wrap">
+  <section class="sec" id="step1">
+    <div id="drop" class="drop" tabindex="0" aria-label="拖入或选择表格文件">
+      <svg class="drop-ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="5" width="22" height="28" rx="3"/><path d="M12 13h12M12 18h12M12 23h7"/><rect x="18" y="21" width="16" height="14" rx="3" class="ico-b"/><path d="M26 25v6M23 28l3-3 3 3" class="ico-a"/></svg>
+      <div class="drop-txt">
+        <p class="drop-t">把 .xlsx / .xls / .csv 拖到这里</p>
+        <p class="drop-s">可一次多选；每个文件读取第一个有内容的工作表，单个不超过 20MB</p>
+      </div>
+      <div class="btns">
+        <label class="btn primary">选择文件<input id="fileInput" type="file" multiple accept=".xlsx,.xls,.csv" hidden></label>
+        <button id="demoBtn" class="btn" type="button">加载示例数据</button>
+      </div>
+    </div>
+    <div class="loaded" id="loaded">
+      <ul id="fileList" class="file-list"></ul>
+      <button id="resetBtn" class="btn ghost small" type="button">清空</button>
+    </div>
+    <p id="msg" class="msg" role="status"></p>
+  </section>
+
+  <section class="sec" id="emptyState">
+    <div class="empty-box">
+      <div class="empty-grid" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="r"></i><i></i><i></i><i class="y"></i><i></i>
+      </div>
+      <p class="empty-t">合并结果会显示在这里</p>
+      <p class="empty-s">没有现成文件？点“加载示例数据”，用 4 张格式各异的合成表格体验完整流程。</p>
+    </div>
+  </section>
+
+  <section class="sec hidden" id="step2">
+    <details id="mapBox" open>
+      <summary>
+        <span class="sec-no">02</span><span class="sec-t">核对列映射</span>
+        <span class="sum" id="mapSummary"></span>
+        <span class="chev" aria-hidden="true"></span>
+      </summary>
+      <p class="hint">每个文件的表头行和同义列名已自动识别。识别不对，改下拉框或表头行号，结果即时更新。</p>
+      <div class="keybar">
+        <span class="kb-l">去重关键字段</span>
+        <span id="keyBoxes" class="chips"></span>
+      </div>
+      <div id="mapList" class="map-list"></div>
+    </details>
+  </section>
+
+  <section class="sec hidden" id="step3">
+    <div class="sec-h">
+      <span class="sec-no">03</span><span class="sec-t">合并结果</span>
+      <button id="exportBtn" class="btn primary" type="button">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10M6 9l4 4 4-4M4 16h12"/></svg>导出 xlsx
+      </button>
+    </div>
+    <div id="cards" class="stats"></div>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-tab="merged" type="button" role="tab">合并结果 <b id="cntMerged"></b></button>
+      <button class="tab" data-tab="problems" type="button" role="tab">问题行 <b id="cntProb"></b></button>
+      <button class="tab" data-tab="files" type="button" role="tab">按文件统计</button>
+      <span class="legend"><i class="lg red"></i>冲突<i class="lg yellow"></i>重复<i class="lg blue"></i>缺失 / 无法识别</span>
+    </div>
+    <div class="tbl-wrap"><table class="tbl" id="preview"></table></div>
+    <p class="note">导出文件包含三个工作表：合并结果、问题行、汇总。</p>
+  </section>
+</main>
+
+<footer class="wrap foot"><span>码上交付 · 作品集演示</span><span>演示数据为合成数据（虚构人员与编号）</span></footer>
+
+<script src="../shared/vendor/xlsx-0.18.5.full.min.js"></script>
+<script src="js/core.js"></script>
+<script src="samples/samples-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

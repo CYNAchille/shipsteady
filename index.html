@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>码上交付 · 在线演示</title>
+<link rel="stylesheet" href="shared/fonts/fonts.css">
+<style>
+:root{--ink:#0e0d0c;--paper:#f1f0ef;--red:#bc2332;--mute:#5d5a55}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Space Grotesk",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+main{max-width:960px;margin:0 auto;padding:56px 16px 64px}
+.eyebrow{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+h1{font-size:clamp(40px,8vw,80px);line-height:1;margin:12px 0 8px;font-weight:700}
+h1 sup{font-size:.3em;color:var(--red);vertical-align:super}
+.lead{font-size:18px;color:var(--mute);margin:0 0 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+a.card{display:block;background:#fff;color:inherit;text-decoration:none;border:1px solid #dcd9d4;transition:transform .25s ease,border-color .25s}
+a.card:hover{transform:translateY(-3px);border-color:var(--ink)}
+.card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid #dcd9d4}
+.card div{padding:16px 18px 20px}
+.card b{display:block;font-size:20px;margin-bottom:6px}
+.card span{font-size:15px;color:var(--mute);line-height:1.6}
+footer{margin-top:40px;font-size:13px;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">ShipSteady · Live demos</div>
+  <h1>码上交付<sup>®</sup></h1>
+  <p class="lead">需求说清楚，就能按时交付能用的系统。下面两个演示可直接在线试用。</p>
+  <div class="grid">
+    <a class="card" href="excel/?demo=1"><img src="excel/screenshot.png" alt="Excel 多表合并清洗工具截图"><div><b>Excel 多表合并清洗工具</b><span>几张格式不一样的表，一次合成一张干净的表：自动找表头、对齐列名、去重、标出冲突、导出 xlsx。文件只在浏览器里处理。</span></div></a>
+    <a class="card" href="sports/"><img src="sports/screenshot-home.png" alt="校园体育成绩系统截图"><div><b>校园体育成绩记录系统</b><span>老师整班录入，学校看达标率看板，家长看孩子的成长曲线。建议用手机打开。</span></div></a>
+  </div>
+  <footer>演示数据均为合成数据。</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sample backtest on public data</title>
+<style>
+body{margin:0;background:#0c0d12;color:#eef0f6;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+main{max-width:960px;margin:0 auto;padding:40px 16px 56px}
+h1{font-size:1.6rem;margin:0 0 .3rem}
+p.sub{color:#9aa1b4;margin:0 0 1.4rem}
+img{width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#fff}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:1rem 0}
+th,td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.12);text-align:right}
+th:first-child,td:first-child{text-align:left}
+ul{padding-left:1.2rem} li{margin:.25rem 0} small{color:#9aa1b4}
+.wrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+  <h1>Sample backtest on public data</h1>
+  <p class="sub">A small example of the kind of output the engine produces: equity curve, drawdown, trade log, tied out to the cent.</p>
+  <img src="equity_curve.png" alt="Equity curve and drawdown, SPY SMA50/200 sample backtest">
+  <ul>
+    <li>Data: SPY daily bars from Yahoo Finance (split-adjusted, dividends excluded), 2010-01-05 to 2026-09-30.</li>
+    <li>Rule: long-only SMA50/SMA200 crossover, fills at the next day's open, 0.05% cost per side, starting equity USD 10,000.</li>
+    <li>Result: total return +252.9% (CAGR 7.83%), max drawdown -34.1%, 8 trades, win rate 62.5% (the last trade is still open, marked at the 2026-09-30 close).</li>
+    <li>Buy &amp; hold over the same period: +571.2%. This simple rule trails it, and the report shows that honestly. That is the point of a backtester.</li>
+    <li>Check: the 8 trade P&amp;Ls sum exactly to ending equity minus 10,000, and each "equity after" value below is the curve's value on that day.</li>
+  </ul>
+  <div class="wrap"><table>
+    <tr><th>Entry</th><th>Entry px</th><th>Exit</th><th>Exit px</th><th>P&amp;L (USD)</th><th>Return</th><th>Equity after</th></tr>
+    <tr><td>2010-10-25</td><td>119.1996</td><td>2011-08-15</td><td>119.1304</td><td>-5.8</td><td>-0.06%</td><td>9994.2</td></tr><tr><td>2012-02-01</td><td>132.3561</td><td>2015-08-31</td><td>198.0109</td><td>4957.59</td><td>49.6%</td><td>14951.79</td></tr><tr><td>2015-12-18</td><td>202.8714</td><td>2016-01-12</td><td>193.7231</td><td>-674.24</td><td>-4.51%</td><td>14277.55</td></tr><tr><td>2016-04-26</td><td>209.1445</td><td>2018-12-10</td><td>263.2383</td><td>3692.79</td><td>25.86%</td><td>17970.34</td></tr><tr><td>2019-04-02</td><td>286.183</td><td>2020-03-31</td><td>260.4297</td><td>-1617.13</td><td>-9.0%</td><td>16353.21</td></tr><tr><td>2020-07-10</td><td>314.4672</td><td>2022-03-15</td><td>419.5601</td><td>5465.14</td><td>33.42%</td><td>21818.35</td></tr><tr><td>2023-02-03</td><td>411.7958</td><td>2025-04-15</td><td>539.4001</td><td>6760.91</td><td>30.99%</td><td>28579.26</td></tr><tr><td>2025-07-02</td><td>617.5486</td><td>2026-09-30 (open, marked)</td><td>762.63</td><td>6714.16</td><td>23.49%</td><td>35293.42</td></tr>
+  </table></div>
+  <p><small>Simulated backtest, not live trading, on public data with a generic textbook rule. Your own rules would sit in a config file, and the same kind of report would be generated for them. Source code is delivered after the first milestone is funded.</small></p>
+</main>
+</body>
+</html>
